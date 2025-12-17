@@ -1,0 +1,2 @@
+/wynton/home/grabe/jborowsky/gromacs/gmx_2024.4_plumed_mpi/gromacs/gromacs-2024.3/build/bin/gmx_mpi grompp -f md.mdp -o aac1_atp_hmr_4fs_notrr.tpr -c seg_0035.gro -p topol.top -n index.ndx
+

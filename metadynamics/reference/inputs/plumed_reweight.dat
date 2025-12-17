@@ -1,0 +1,48 @@
+#ATP binding
+#indices correct for equil run 22
+pc_p_raw: COORDINATION GROUPA=4712,4716,4720 GROUPB=471,2165,3658 SWITCH={CUSTOM FUNC=1/x R_0=1000.0}
+pc_p: MATHEVAL ARG=pc_p_raw FUNC=-x/1000 PERIODIC=NO
+
+#C-M state flipping
+pc_fc: DRMSD REFERENCE=../../inputs/pcoord_ref_structures/btAAC1_cdl_cstate_2c3e-hca.pdb       LOWER_CUTOFF=0.0 UPPER_CUTOFF=1000.0
+pc_fm: DRMSD REFERENCE=../../inputs/pcoord_ref_structures/btAAC1_cdl_mstate_6gci_model-hca.pdb LOWER_CUTOFF=0.0 UPPER_CUTOFF=1000.0
+pc_f: MATHEVAL ARG=pc_fc,pc_fm FUNC=(x-y)/(x+y) PERIODIC=NO
+
+#2D metadynamics
+# sigma is adjusted based on the appearance of the lumps on a pc1 vs pc2 scatterplot, 
+#   such that the sum of gaussians spaced like the lumps would yield a bimodal distribution
+# grid spacing is adjusted to equal sigma/5
+metad: METAD ARG=pc_p,pc_f ...
+    TEMP=310.15
+    PACE=500
+    HEIGHT=0.075
+    BIASFACTOR=16
+    SIGMA=0.333,0.0333
+    FILE=HILLS
+    GRID_MIN=-30,-1
+    GRID_MAX=0,1
+    GRID_SPACING=0.0666,0.00666
+    WALKERS_N=@nw@ 
+    WALKERS_ID=@id@ 
+    WALKERS_DIR=../ 
+    WALKERS_RSTRIDE=5000
+    RESTART=YES    #needed for processing
+...
+
+# Use the metadynamics bias as argument
+as: REWEIGHT_BIAS ARG=metad.bias 
+# Calculate histograms of phi and psi dihedrals every 50 steps
+# using the weights obtained from the metadynamics bias potentials (umbrella-sampling-like reweighting)
+# Look at the manual to understand the parameters of the HISTOGRAM action!
+hhphi: HISTOGRAM ARG=pc_p STRIDE=500 GRID_MIN=-30 GRID_MAX=0 GRID_BIN=50 BANDWIDTH=0.05 LOGWEIGHTS=as 
+hhpsi: HISTOGRAM ARG=pc_f STRIDE=500 GRID_MIN=-1 GRID_MAX=1 GRID_BIN=50 BANDWIDTH=0.05 LOGWEIGHTS=as 
+# Convert histograms h(s) to free energies F(s) = -kBT * log(h(s))
+ffphi: CONVERT_TO_FES GRID=hhphi 
+ffpsi: CONVERT_TO_FES GRID=hhpsi 
+# Print out the free energies F(s) to file once the entire trajectory is processed
+DUMPGRID GRID=ffphi FILE=ffphi.dat 
+DUMPGRID GRID=ffpsi FILE=ffpsi.dat 
+
+# Print out the values of phi, psi and the metadynamics bias potential
+# Make sure you print out the 3 variables in the specified order at every step
+#PRINT ARG=phi,psi,metad.bias FILE=COLVAR_REWEIGHT STRIDE=500 # <- also change this one!
