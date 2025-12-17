@@ -2,5 +2,9 @@ binding/rotated-cavity-atp
 equilibration/rotated-cavity-atp
 binding/solution-atp
 equilibration/solution-atp
+<<<<<<< HEAD
 metadynamics/run1/run_c
 metadynamics/run1/run_m
+=======
+charmmgui
+>>>>>>> 0784c9d59a8ae282b871e6927cf8f133bcfaea59
