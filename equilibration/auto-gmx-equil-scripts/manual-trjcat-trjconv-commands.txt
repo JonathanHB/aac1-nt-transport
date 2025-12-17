@@ -1,0 +1,6 @@
+module load mpi
+module load Sali
+module load cuda/10.0.130
+
+/wynton/home/grabe/shared/gromacs/gromacs-2020.6_CUDA10_SSE4/bin/gmx trjcat -f seg_0002.trr seg_0003.trr -o all_segs.trr
+/wynton/home/grabe/shared/gromacs/gromacs-2020.6_CUDA10_SSE4/bin/gmx trjconv -s seg_0001.tpr -f all_segs.trr -pbc mol -o all_segs_mol.xtc

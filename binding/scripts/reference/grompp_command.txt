@@ -1,0 +1,1 @@
+/wynton/home/grabe/jborowsky/gromacs/gmx_2024.4_plumed_mpi/gromacs/gromacs-2024.3/build/bin/gmx_mpi grompp -f ../scripts/mdp_hmr_4fs.mdp -o plain_binding_hmr_4fs.tpr -c ../../equilibration/run01-aac1-c-atp/run/seg_0023.gro -p ../../equilibration/run01-aac1-c-atp/input/topol.top -n ../../equilibration/run01-aac1-c-atp/input/index.ndx
