@@ -1,10 +1,12 @@
 runfolder=rotated-cavity-atp
 
 nwalkers=8
+#max_dir_ind=$(($nwalkers-1))
+
 
 cd run_c
 
-for i in {1..8};
+for ((i=0; i<$nwalkers; i++))
 do
 	DIRECTORY=$i #run$(printf '%02d' "$i")-aac1-c-atp
 	if [ ! -d "$DIRECTORY" ]; then
@@ -24,7 +26,7 @@ done
 
 cd ../run_m
 
-for i in {1..8};
+for ((i=0; i<$nwalkers; i++))
 do
 	DIRECTORY=$i #run$(printf '%02d' "$i")-aac1-m-atp
 	if [ ! -d "$DIRECTORY" ]; then

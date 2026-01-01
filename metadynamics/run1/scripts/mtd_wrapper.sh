@@ -17,7 +17,7 @@ date
 hostname
 
 ## GPU/CPU stuff
-GMX_CPUS=3
+#GMX_CPUS=3
 export CUDA_VISIBLE_DEVICES=$SGE_GPU
 export OMP_NUM_THREADS=8
 echo $CUDA_VISIBLE_DEVICES
@@ -39,7 +39,7 @@ module load cuda/10.0.130
 #for full gpu offloading
 export GMX_GPU_DD_COMMS=true
 export GMX_GPU_PME_PP_COMMS=true
-export GMX_FORCE_UPDATE_DEFAULT_GPU=true
+#export GMX_FORCE_UPDATE_DEFAULT_GPU=true
 
 #echo $1
 

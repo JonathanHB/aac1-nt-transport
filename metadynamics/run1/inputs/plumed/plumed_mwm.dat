@@ -4,8 +4,8 @@ pc_p_raw: COORDINATION GROUPA=5432,5436,5440 GROUPB=471,2165,3658 SWITCH={CUSTOM
 pc_p: MATHEVAL ARG=pc_p_raw FUNC=-x/1000 PERIODIC=NO
 
 #C-M state flipping
-pc_fc: DRMSD REFERENCE=../../inputs/plumed/pcoord_ref_structures/c-ref.pdb LOWER_CUTOFF=0.0 UPPER_CUTOFF=1000.0
-pc_fm: DRMSD REFERENCE=../../inputs/plumed/pcoord_ref_structures/m-ref.pdb LOWER_CUTOFF=0.0 UPPER_CUTOFF=1000.0
+pc_fc: DRMSD REFERENCE=../../inputs/plumed/pcoord_ref_structures/c-ref-helix-ca.pdb LOWER_CUTOFF=0.0 UPPER_CUTOFF=1000.0
+pc_fm: DRMSD REFERENCE=../../inputs/plumed/pcoord_ref_structures/m-ref-helix-ca.pdb LOWER_CUTOFF=0.0 UPPER_CUTOFF=1000.0
 pc_f: MATHEVAL ARG=pc_fc,pc_fm FUNC=(x-y)/(x+y) PERIODIC=NO
 
 #2D metadynamics

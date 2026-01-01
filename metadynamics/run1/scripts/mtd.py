@@ -18,8 +18,28 @@ t1 = time.time()
 import sys
 import os
 
-# TODO: fix discrepancy between file path and gromacs version
-GMX="/wynton/home/grabe/jborowsky/gromacs/gmx_2024.4_plumed_mpi/gromacs/gromacs-2024.3/build/bin/gmx_mpi"
+def gmxrun(command):
+    header = '''
+        module load mpi
+        module load Sali
+        module load cuda/10.0.130
+        GMX=/wynton/home/grabe/jborowsky/gromacs/gmx_2024.4_plumed_mpi/gromacs/gromacs-2024.3/build/bin/gmx_mpi
+        export GMX_GPU_DD_COMMS=true
+        export GMX_GPU_PME_PP_COMMS=true
+        export GMX_FORCE_UPDATE_DEFAULT_GPU=true
+        export GMX_NO_QUOTES=True
+        export OMP_NUM_THREADS=8
+        export CUDA_VISIBLE_DEVICES=$SGE_GPU
+        '''
+
+    return os.system(f"{header}\n{command}")
+
+
+#GMX="/wynton/home/grabe/jborowsky/gromacs/plumed_gmx_122825/gromacs/bin/gmx_mpi"
+#GMX="/wynton/home/grabe/jborowsky/gromacs/plumed_gmx_122325/gromacs/gromacs-2025.0/build/bin/gmx_mpi"
+
+## TODO: fix discrepancy between file path and gromacs version
+#GMX="/wynton/home/grabe/jborowsky/gromacs/gmx_2024.4_plumed_mpi/gromacs/gromacs-2024.3/build/bin/gmx_mpi"
 
 #mdp = "mdp_hmr_4fs_debug_short.mdp"
 mdp_tpr = "mdp_hmr_4fs"
@@ -54,15 +74,13 @@ for round in range(999):
     # make a tpr using the configuration in the last equilibration file
     if not os.path.exists("state.cpt"):
 
-        os.system(f"export GMX_NO_QUOTES=True; export CUDA_VISIBLE_DEVICES=$SGE_GPU; \
-                {GMX} grompp -f ../mdp/{mdp_tpr}.mdp -o {mdp_tpr}_01.tpr -c {sys.argv[1]}/seg_06.gro -p {sys.argv[1]}/topol.top -n {sys.argv[1]}/index.ndx")
+        gmxrun(f"$GMX grompp -f ../../inputs/mdp/{mdp_tpr}.mdp -o {mdp_tpr}_01.tpr -c {sys.argv[1]}/seg_06.gro -p {sys.argv[1]}/topol.top -n {sys.argv[1]}/index.ndx")
         
         t2 = time.time()
         t_left = 2-(t2 - t1)/3600  #2 hours minus time already used, in hours
 
         #TODO can we make this one command run after the if statements and set the parameters beforehand? be careful with the -cpi flag here
-        os.system(f"export GMX_NO_QUOTES=True; export CUDA_VISIBLE_DEVICES=$SGE_GPU; \
-                {GMX} mdrun -s {mdp_tpr}_01.tpr -cpo -x mtd_seg_01.xtc -e ener_01.edr -g md.log_01.log -c mtd_seg_01.gro -nb gpu -pme gpu -bonded gpu -update gpu -maxh {t_left} -plumed plumed.dat")
+        gmxrun(f"$GMX mdrun -s {mdp_tpr}_01.tpr -cpo -x mtd_seg_01.xtc -e ener_01.edr -g md.log_01.log -c mtd_seg_01.gro -nb gpu -pme gpu -bonded gpu -maxh {t_left} -plumed plumed.dat")
 
 
     #start new segment if current one is complete
@@ -70,14 +88,12 @@ for round in range(999):
 
         next_ind = str(gro_segnum+1).zfill(ndigits)
 
-        os.system(f"export GMX_NO_QUOTES=True; export CUDA_VISIBLE_DEVICES=$SGE_GPU; \
-                {GMX} grompp -f ../mdp/{mdp_tpr}.mdp -o {mdp_tpr}_{next_ind}.tpr -c mtd_seg_{str(gro_segnum).zfill(ndigits)}.gro -p {sys.argv[1]}/topol.top -n {sys.argv[1]}/index.ndx")
+        gmxrun(f"$GMX grompp -f ../../inputs/mdp/{mdp_tpr}.mdp -o {mdp_tpr}_{next_ind}.tpr -c mtd_seg_{str(gro_segnum).zfill(ndigits)}.gro -p {sys.argv[1]}/topol.top -n {sys.argv[1]}/index.ndx")
         
         t2 = time.time()
         t_left = 2-(t2 - t1)/3600  #2 hours minus time already used, in hours
 
-        os.system(f"export GMX_NO_QUOTES=True; export CUDA_VISIBLE_DEVICES=$SGE_GPU; \
-                {GMX} mdrun -s {mdp_tpr}_{next_ind}.tpr -cpo -x mtd_seg_{next_ind}.xtc -e ener_{next_ind}.edr -g md.log_{next_ind}.log -c mtd_seg_{next_ind}.gro -nb gpu -pme gpu -bonded gpu -update gpu -maxh {t_left} -plumed plumed.dat")
+        gmxrun(f"$GMX mdrun -s {mdp_tpr}_{next_ind}.tpr -cpo -x mtd_seg_{next_ind}.xtc -e ener_{next_ind}.edr -g md.log_{next_ind}.log -c mtd_seg_{next_ind}.gro -nb gpu -pme gpu -bonded gpu -maxh {t_left} -plumed plumed.dat")
 
 
     #if there is an incomplete segment, resume from checkpoint file and append it
@@ -88,8 +104,7 @@ for round in range(999):
         t2 = time.time()
         t_left = 2-(t2 - t1)/3600  #2 hours minus time already used, in hours
 
-        os.system(f"export GMX_NO_QUOTES=True; export CUDA_VISIBLE_DEVICES=$SGE_GPU; \
-                {GMX} mdrun -s {mdp_tpr}_{ind}.tpr -cpi state.cpt -cpo -x mtd_seg_{ind}.xtc -e ener_{ind}.edr -g md.log_{ind}.log -c mtd_seg_{ind}.gro -append -nb gpu -pme gpu -bonded gpu -update gpu -maxh {t_left} -plumed plumed.dat")
+        gmxrun(f"$GMX mdrun -s {mdp_tpr}_{ind}.tpr -cpi state.cpt -cpo -x mtd_seg_{ind}.xtc -e ener_{ind}.edr -g md.log_{ind}.log -c mtd_seg_{ind}.gro -append -nb gpu -pme gpu -bonded gpu -maxh {t_left} -plumed plumed.dat")
 
 
 
