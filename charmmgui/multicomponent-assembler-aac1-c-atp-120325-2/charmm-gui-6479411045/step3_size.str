@@ -1,0 +1,14 @@
+ SET BOXTYPE  = RECT
+ SET XTLTYPE  = TETRAGONAL
+ SET A        = 95
+ SET B        = 95
+ SET C        = 90
+ SET ALPHA    = 90.0
+ SET BETA     = 90.0
+ SET GAMMA    = 90.0
+ SET ZCEN     = 0
+ SET NLIPTOP  = 115
+ SET NLIPBOT  = 108
+ SET WBOXZ    = 25
+ SET WATBOXZ  = 25
+ SET NCHARGE  = 9

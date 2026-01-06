@@ -1,0 +1,25 @@
+/home/charmm-gui/www/../data/www/6541280366/ppm_693a1fdb8497b.pdb               
+heteroatoms excluded
+atom not in library: OT1  A VAL   297
+atom not in library: OT2  A VAL   297
+Initial optimiz. in hydrocarbon slab with approximate energy functions:
+emin=   -76.6 slab thickn.=    26.0
+    6 possible transmembrane secondary structure segments
+   1 A    3   44  42
+   2 A   66   99  34
+   3 A  107  142  36
+   4 A  168  200  33
+   5 A  209  240  32
+   6 A  266  295  30
+Possible transmembrane protein, checking... 
+N interact. lipids:  25
+#/hom;A; 11;8-37,53-54,57,66-95,97-98,108-109,111-141,155-161,164,168-197,200-201,210-238,253-254,257,266-294,296-297
+A  10  37    33.   -8.1
+A  66  91    42.  -14.9
+A 112 141    41.   -4.4
+A 168 197    49.   -0.8
+A 210 238    38.   -8.9
+A 266 294    46.    0.6
+TMH contribution:   -36.6
+Tilt angle:    5.3
+/home/char emin=   -45.1 thickn= 30.6+- 1.2 tilt=     5.+-    0.

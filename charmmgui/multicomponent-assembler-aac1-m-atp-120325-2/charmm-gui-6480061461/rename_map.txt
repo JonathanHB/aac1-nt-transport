@@ -1,0 +1,6 @@
+    OLD_NAME NEW_NAME
+atp_step1_pdbreader.psf
+    HETA     HAA     
+step1_pdbreader.psf
+    HETA     HAB     
+    PROA     PAA     
