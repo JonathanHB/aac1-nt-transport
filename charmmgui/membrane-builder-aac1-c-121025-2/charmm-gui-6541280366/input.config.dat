@@ -1,1 +1,0 @@
-{"systype":"bilayer","dimensions":["95.1509791","95.1509791","95.293851","90.0","90.0","90.0"],"input":["gromacs","amber","openmm"],"forcefield":{"type":"c36m","files":["default"],"custom":[]},"hmr":false}

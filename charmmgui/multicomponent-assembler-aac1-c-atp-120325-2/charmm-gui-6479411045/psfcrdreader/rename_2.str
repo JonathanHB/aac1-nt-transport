@@ -1,8 +1,0 @@
-* Renames segments from modified PSF according to Multicomponent Assembler
-* naming scheme.
-* Original PSF: step1_pdbreader.psf
-*
-
-rename segid HAB@IN1 select segid HAB end
-rename segid PAA@IN1 select segid PAA end
-
