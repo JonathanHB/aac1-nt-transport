@@ -1,0 +1,120 @@
+* place dummy atoms at the center of each rings
+*
+
+set ncycles = 57
+
+read sequence POL @NCYCLES
+generate DUM warn
+
+coor set xdir   -7.474 ydir    5.048 zdir    8.829 sele segid dum .and. resi 1 end
+coor set xdir   14.514 ydir    8.723 zdir  -12.205 sele segid dum .and. resi 2 end
+coor set xdir   16.432 ydir    7.177 zdir  -26.635 sele segid dum .and. resi 3 end
+coor set xdir   19.381 ydir   14.379 zdir  -19.387 sele segid dum .and. resi 4 end
+coor set xdir   22.152 ydir   16.137 zdir  -14.545 sele segid dum .and. resi 5 end
+coor set xdir   17.468 ydir   11.243 zdir  -16.805 sele segid dum .and. resi 6 end
+coor set xdir    2.743 ydir    3.991 zdir   -5.125 sele segid dum .and. resi 7 end
+coor set xdir   -0.037 ydir   11.566 zdir    0.109 sele segid dum .and. resi 8 end
+coor set xdir    2.361 ydir    0.956 zdir    3.607 sele segid dum .and. resi 9 end
+coor set xdir   -9.278 ydir    1.735 zdir    5.330 sele segid dum .and. resi 10 end
+coor set xdir   -8.229 ydir  -10.174 zdir   11.182 sele segid dum .and. resi 11 end
+coor set xdir    2.102 ydir  -12.251 zdir   13.857 sele segid dum .and. resi 12 end
+coor set xdir  -13.121 ydir    4.400 zdir    1.032 sele segid dum .and. resi 13 end
+coor set xdir  -11.687 ydir   -0.247 zdir  -10.717 sele segid dum .and. resi 14 end
+coor set xdir  -14.031 ydir    4.404 zdir  -16.504 sele segid dum .and. resi 15 end
+coor set xdir  -15.323 ydir   12.444 zdir  -20.947 sele segid dum .and. resi 16 end
+coor set xdir  -16.432 ydir    1.958 zdir   -7.760 sele segid dum .and. resi 17 end
+coor set xdir  -14.279 ydir   -3.135 zdir   -6.944 sele segid dum .and. resi 18 end
+coor set xdir    1.117 ydir   -6.315 zdir   -5.363 sele segid dum .and. resi 19 end
+coor set xdir    3.349 ydir   -4.118 zdir   -0.648 sele segid dum .and. resi 20 end
+coor set xdir    0.156 ydir   -3.417 zdir    2.847 sele segid dum .and. resi 21 end
+coor set xdir    8.330 ydir   -5.466 zdir    5.064 sele segid dum .and. resi 22 end
+coor set xdir   16.801 ydir  -11.728 zdir   14.150 sele segid dum .and. resi 23 end
+coor set xdir    1.625 ydir  -10.396 zdir  -15.319 sele segid dum .and. resi 24 end
+coor set xdir   -2.025 ydir  -14.735 zdir  -12.949 sele segid dum .and. resi 25 end
+coor set xdir  -12.295 ydir  -13.563 zdir  -23.430 sele segid dum .and. resi 26 end
+coor set xdir   -5.076 ydir  -16.757 zdir  -18.070 sele segid dum .and. resi 27 end
+coor set xdir   13.858 ydir    2.254 zdir   -2.896 sele segid dum .and. resi 28 end
+coor set xdir    3.956 ydir    2.542 zdir    7.588 sele segid dum .and. resi 29 end
+coor set xdir   10.201 ydir    9.824 zdir   10.746 sele segid dum .and. resi 30 end
+coor set xdir   12.725 ydir   -9.626 zdir  -17.021 sele segid dum .and. resi 31 end
+coor set xdir   13.704 ydir  -10.139 zdir  -18.882 sele segid dum .and. resi 32 end
+coor set xdir    1.415 ydir  -17.965 zdir  -14.411 sele segid dum .and. resi 33 end
+coor set xdir   -1.377 ydir  -22.724 zdir  -19.213 sele segid dum .and. resi 34 end
+coor set xdir   -8.368 ydir  -19.371 zdir  -14.838 sele segid dum .and. resi 35 end
+coor set xdir   -6.581 ydir  -18.218 zdir  -14.494 sele segid dum .and. resi 36 end
+coor set xdir   -6.928 ydir  -14.380 zdir   -9.545 sele segid dum .and. resi 37 end
+coor set xdir   14.996 ydir   -1.466 zdir   -1.946 sele segid dum .and. resi 38 end
+coor set xdir   16.671 ydir   -2.582 zdir   -2.716 sele segid dum .and. resi 39 end
+coor set xdir   21.263 ydir   -2.463 zdir    7.346 sele segid dum .and. resi 40 end
+coor set xdir   22.383 ydir   -6.592 zdir   13.852 sele segid dum .and. resi 41 end
+coor set xdir  -24.749 ydir    8.634 zdir  -10.979 sele segid dum .and. resi 42 end
+coor set xdir  -13.734 ydir    5.108 zdir   -8.823 sele segid dum .and. resi 43 end
+coor set xdir    4.265 ydir  -15.970 zdir   10.322 sele segid dum .and. resi 44 end
+coor set xdir   -3.646 ydir  -21.637 zdir    9.520 sele segid dum .and. resi 45 end
+coor set xdir   -1.544 ydir  -21.709 zdir    9.026 sele segid dum .and. resi 46 end
+coor set xdir    5.461 ydir  -19.445 zdir   16.761 sele segid dum .and. resi 47 end
+coor set xdir    4.883 ydir  -14.640 zdir   22.930 sele segid dum .and. resi 48 end
+coor set xdir   -9.595 ydir   -3.809 zdir    7.414 sele segid dum .and. resi 49 end
+coor set xdir   -3.896 ydir    8.703 zdir   -2.860 sele segid dum .and. resi 50 end
+coor set xdir   12.948 ydir   12.785 zdir  -10.421 sele segid dum .and. resi 51 end
+coor set xdir   15.028 ydir   13.156 zdir  -10.878 sele segid dum .and. resi 52 end
+coor set xdir    9.296 ydir    0.263 zdir  -34.740 sele segid dum .and. resi 53 end
+coor set xdir   -4.715 ydir    9.194 zdir    3.901 sele segid dum .and. resi 54 end
+coor set xdir    1.855 ydir   36.643 zdir   39.590 sele segid dum .and. resi 55 end
+coor set xdir    2.229 ydir   39.544 zdir   41.774 sele segid dum .and. resi 56 end
+coor set xdir    1.997 ydir   41.497 zdir   41.004 sele segid dum .and. resi 57 end
+
+scalar wmain set 0
+scalar wmain set 1.0 sele segid PAA1 .and. resi 7 end
+scalar wmain set 1.0 sele segid PAA1 .and. resi 27 end
+scalar wmain set 1.0 sele segid PAA1 .and. resi 50 end
+scalar wmain set 1.0 sele segid PAA1 .and. resi 61 end
+scalar wmain set 1.0 sele segid PAA1 .and. resi 66 end
+scalar wmain set 1.0 sele segid PAA1 .and. resi 69 end
+scalar wmain set 1.0 sele segid PAA1 .and. resi 80 end
+scalar wmain set 1.0 sele segid PAA1 .and. resi 81 end
+scalar wmain set 1.0 sele segid PAA1 .and. resi 88 end
+scalar wmain set 1.0 sele segid PAA1 .and. resi 90 end
+scalar wmain set 1.0 sele segid PAA1 .and. resi 98 end
+scalar wmain set 1.0 sele segid PAA1 .and. resi 111 end
+scalar wmain set 1.0 sele segid PAA1 .and. resi 129 end
+scalar wmain set 1.0 sele segid PAA1 .and. resi 131 end
+scalar wmain set 1.0 sele segid PAA1 .and. resi 135 end
+scalar wmain set 1.0 sele segid PAA1 .and. resi 153 end
+scalar wmain set 1.0 sele segid PAA1 .and. resi 173 end
+scalar wmain set 1.0 sele segid PAA1 .and. resi 176 end
+scalar wmain set 1.0 sele segid PAA1 .and. resi 186 end
+scalar wmain set 1.0 sele segid PAA1 .and. resi 190 end
+scalar wmain set 1.0 sele segid PAA1 .and. resi 191 end
+scalar wmain set 1.0 sele segid PAA1 .and. resi 194 end
+scalar wmain set 1.0 sele segid PAA1 .and. resi 202 end
+scalar wmain set 1.0 sele segid PAA1 .and. resi 228 end
+scalar wmain set 1.0 sele segid PAA1 .and. resi 229 end
+scalar wmain set 1.0 sele segid PAA1 .and. resi 250 end
+scalar wmain set 1.0 sele segid PAA1 .and. resi 269 end
+scalar wmain set 1.0 sele segid PAA1 .and. resi 285 end
+scalar wmain set 1.0 sele segid PAA1 .and. resi 290 end
+scalar wmain set 1.0 sele segid PAA1 .and. resi 296 end
+scalar wmain set 1.0 sele segid PAA1 .and. resi 274 end
+scalar wmain set 1.0 sele segid PAA1 .and. resi 270 end
+scalar wmain set 1.0 sele segid PAA1 .and. resi 266 end
+scalar wmain set 1.0 sele segid PAA1 .and. resi 257 end
+scalar wmain set 1.0 sele segid PAA1 .and. resi 230 end
+scalar wmain set 1.0 sele segid PAA1 .and. resi 213 end
+scalar wmain set 1.0 sele segid PAA1 .and. resi 208 end
+scalar wmain set 1.0 sele segid PAA1 .and. resi 204 end
+scalar wmain set 1.0 sele segid PAA1 .and. resi 164 end
+scalar wmain set 1.0 sele segid PAA1 .and. resi 132 end
+scalar wmain set 1.0 sele segid PAA1 .and. resi 112 end
+scalar wmain set 1.0 sele segid PAA1 .and. resi 109 end
+scalar wmain set 1.0 sele segid PAA1 .and. resi 108 end
+scalar wmain set 1.0 sele segid PAA1 .and. resi 105 end
+scalar wmain set 1.0 sele segid PAA1 .and. resi 94 end
+scalar wmain set 1.0 sele segid PAA1 .and. resi 82 end
+scalar wmain set 1.0 sele segid PAA1 .and. resi 70 end
+scalar wmain set 1.0 sele segid PAA1 .and. resi 39 end
+scalar wmain set 1.0 sele segid PAA1 .and. resi 11 end
+scalar wmain set 1.0 sele segid HAA1 .and. resi 0 end
+
+return
+

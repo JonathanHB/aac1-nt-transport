@@ -1,0 +1,21 @@
+* Information about this system's structures
+* Usage: stream upload_info.str index
+*
+
+if @?IN1 .eq. 0 stop ! ABNORMAL TERMINATION: missing index
+if @IN1 .lt. 0 stop ! ABNORMAL TERMINATION: bad index
+
+set num_uploaded = 2
+if @IN1 .gt. @{num_uploaded} stop ! ABNORMAL TERMINATION: bad index
+
+! PSF files
+if @IN1 .eq. 1 set psffile = uploaded_files/atp_step1_pdbreader.psf
+if @IN1 .eq. 2 set psffile = uploaded_files/step1_pdbreader.psf
+
+! CRD files
+if @IN1 .eq. 1 set crdfile = uploaded_files/atp_step1_pdbreader.crd
+if @IN1 .eq. 2 set crdfile = uploaded_files/step1_pdbreader.crd
+
+! Image PSF files
+set impatch = NO
+set imagepsf = NO
