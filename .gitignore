@@ -4,4 +4,6 @@ binding/solution-atp
 equilibration/solution-atp
 metadynamics/run1/run_c
 metadynamics/run1/run_m
+metadynamics/run2/run_c
+metadynamics/run2/run_m
 charmmgui
