@@ -23,8 +23,8 @@ pc_fm: DRMSD REFERENCE=../../inputs/plumed/pcoord_ref_structures/m-ref-helix-ca.
 pc_f1: MATHEVAL ARG=pc_fc,pc_fm FUNC=(x-y) PERIODIC=NO
 pc_f2: MATHEVAL ARG=pc_fc,pc_fm FUNC=(x+y) PERIODIC=NO
 
-pc_f1b: PIECEWISE POINT0=-0.3,-0.3 POINT1=0.3,0.3 ARG=pc_f1
-pc_f2b: PIECEWISE POINT0=0,0 POINT1=3,3 ARG=pc_f2
+pc_f1b: PIECEWISE POINT0=-0.4,-0.4 POINT1=0.4,0.4 ARG=pc_f1
+pc_f2b: PIECEWISE POINT0=0.3,0.3 POINT1=3,3 ARG=pc_f2
 
 pc_f: MATHEVAL ARG=pc_fc,pc_fm FUNC=(x-y)/(x+y) PERIODIC=NO
 
