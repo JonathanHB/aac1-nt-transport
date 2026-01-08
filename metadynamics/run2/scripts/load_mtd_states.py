@@ -1,7 +1,7 @@
 #imports are not actually needed, ignore the linter error message for the cmd library
 import os
 #import sys
-segnum = 3 #int(sys.argv[1])
+segnum = 1 #int(sys.argv[1])
 
 for i in range(0,8):
     fn = f"c_run{str(i).zfill(2)}_mtd_seg_{str(segnum).zfill(2)}_centered"
