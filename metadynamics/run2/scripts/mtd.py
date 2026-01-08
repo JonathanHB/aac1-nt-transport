@@ -98,7 +98,7 @@ elif xtc_segnum == gro_segnum:
     t2 = time.time()
     t_left = 2-(t2 - t1)/3600  #2 hours minus time already used, in hours
 
-    gmxrun(f"$GMX mdrun -s {mdp_tpr}_{next_ind}.tpr -cpo -x mtd_seg_{next_ind}.xtc -e ener_{next_ind}.edr -g md.log_{next_ind}.log -c mtd_seg_{next_ind}.gro -nb gpu -pme gpu -bonded gpu -maxh {t_left} -tinit {int(0.002*25000000*gro_segnum)} -plumed plumed.dat")
+    gmxrun(f"$GMX mdrun -s {mdp_tpr}_{next_ind}.tpr -cpo -x mtd_seg_{next_ind}.xtc -e ener_{next_ind}.edr -g md.log_{next_ind}.log -c mtd_seg_{next_ind}.gro -nb gpu -pme gpu -bonded gpu -maxh {t_left} -plumed plumed.dat")
 
 
 #if there is an incomplete segment, resume from checkpoint file and append it
