@@ -1,0 +1,59 @@
+##ATP binding
+##indices correct for equil run 22
+#pc_p_raw: COORDINATION GROUPA=4712,4716,4720 GROUPB=471,2165,3658 SWITCH={CUSTOM FUNC=1/x R_0=1000.0}
+#pc_p: MATHEVAL ARG=pc_p_raw FUNC=-x/1000 PERIODIC=NO
+
+##C-M state flipping
+#pc_fc: DRMSD REFERENCE=../../inputs/pcoord_ref_structures/btAAC1_cdl_cstate_2c3e-hca.pdb       LOWER_CUTOFF=0.0 UPPER_CUTOFF=1000.0
+#pc_fm: DRMSD REFERENCE=../../inputs/pcoord_ref_structures/btAAC1_cdl_mstate_6gci_model-hca.pdb LOWER_CUTOFF=0.0 UPPER_CUTOFF=1000.0
+
+
+
+#ATP binding
+#indices correct for equil run 22
+pc_p_raw: COORDINATION GROUPA=5432,5436,5440 GROUPB=471,2165,3658 SWITCH={CUSTOM FUNC=1/x R_0=1000.0}
+pc_p: MATHEVAL ARG=pc_p_raw FUNC=-x/1000 PERIODIC=NO
+
+#C-M state flipping
+pc_fc: DRMSD REFERENCE=../../inputs/plumed/pcoord_ref_structures/c-ref-helix-ca.pdb LOWER_CUTOFF=0.0 UPPER_CUTOFF=1000.0
+pc_fm: DRMSD REFERENCE=../../inputs/plumed/pcoord_ref_structures/m-ref-helix-ca.pdb LOWER_CUTOFF=0.0 UPPER_CUTOFF=1000.0
+
+#this approach makes more efficient use of plumed grid points 
+#than a naive one using pc_fc and pc_fm directly because many grid points would be inaccessible by the triangle inequality
+pc_f1: MATHEVAL ARG=pc_fc,pc_fm FUNC=(x-y) PERIODIC=NO
+pc_f2: MATHEVAL ARG=pc_fc,pc_fm FUNC=(x+y) PERIODIC=NO
+
+pc_f1b: PIECEWISE POINT0=-0.4,-0.4 POINT1=0.4,0.4 ARG=pc_f1
+pc_f2b: PIECEWISE POINT0=0.3,0.3 POINT1=3,3 ARG=pc_f2
+
+pc_f: MATHEVAL ARG=pc_fc,pc_fm FUNC=(x-y)/(x+y) PERIODIC=NO
+
+#see https://groups.google.com/g/plumed-users/c/b6-ge4yLiNE for discussion of mwm and grids
+
+#2D metadynamics
+# sigma is adjusted based on the appearance of the lumps on a pc1 vs pc2 scatterplot, 
+#   such that the sum of gaussians spaced like the lumps would yield a bimodal distribution
+# grid spacing is adjusted to equal sigma/5
+metad: METAD ARG=pc_f1b,pc_f2b ...
+    TEMP=310.15
+    PACE=1000
+    HEIGHT=0.1
+    #### BIASFACTOR=16
+    SIGMA=0.02,0.05
+    FILE=HILLS
+    GRID_MIN=-0.6,0
+    GRID_MAX=0.3,3
+    GRID_SPACING=0.004,0.01
+    #GRID_WSTRIDE=10000
+    #GRID_WFILE=grid.dat
+    #STORE_GRIDS=ON
+    WALKERS_N=@nw@ 
+    WALKERS_ID=@id@ 
+    WALKERS_DIR=../ 
+    WALKERS_RSTRIDE=10000
+
+    #RESTART=YES    #this will cause jobs to crash if included on the initial run because there is no existing hills file to read. It's unclear to me what exactly this does or whether it should be included
+...
+
+#output
+PRINT ARG=pc_f1b,pc_f2b,pc_f1,pc_f2,pc_p,pc_f,metad.bias FILE=COLVAR STRIDE=10000
