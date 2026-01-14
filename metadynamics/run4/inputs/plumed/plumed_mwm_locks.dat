@@ -1,0 +1,36 @@
+#ATP binding
+#indices correct for equil run 22
+pc_p_raw: COORDINATION GROUPA=5432,5436,5440 GROUPB=471,2165,3658 SWITCH={CUSTOM FUNC=1/x R_0=1000.0}
+pc_p: MATHEVAL ARG=pc_p_raw FUNC=-x/1000 PERIODIC=NO
+
+#C-M state flipping
+pc_fc: DRMSD REFERENCE=../../inputs/plumed/pcoord_ref_structures/c-ref-helix-ca.pdb LOWER_CUTOFF=0.0 UPPER_CUTOFF=1000.0
+pc_fm: DRMSD REFERENCE=../../inputs/plumed/pcoord_ref_structures/m-ref-helix-ca.pdb LOWER_CUTOFF=0.0 UPPER_CUTOFF=1000.0
+#pc_f: MATHEVAL ARG=pc_fc,pc_fm FUNC=(x-y)/(x+y) PERIODIC=NO
+
+pc_flip: MATHEVAL ARG=pc_fc,pc_fm FUNC=(x-y) PERIODIC=NO
+pc_fold: MATHEVAL ARG=pc_fc,pc_fm FUNC=(x+y) PERIODIC=NO
+
+#2D metadynamics
+# sigma is adjusted based on the appearance of the lumps on a pc1 vs pc2 scatterplot, 
+#   such that the sum of gaussians spaced like the lumps would yield a bimodal distribution
+# grid spacing is adjusted to equal sigma/5
+metad: METAD ARG=pc_flip,pc_fold ...
+    TEMP=310.15
+    PACE=500
+    HEIGHT=0.2
+    BIASFACTOR=32
+    SIGMA=0.333,0.0333
+    FILE=HILLS
+    GRID_MIN=-30,-1
+    GRID_MAX=0,1
+    GRID_SPACING=0.0666,0.00666
+    WALKERS_N=@nw@ 
+    WALKERS_ID=@id@ 
+    WALKERS_DIR=../ 
+    WALKERS_RSTRIDE=5000
+    #RESTART=YES    #this will cause jobs to crash if included on the initial run because there is no existing hills file to read. It's unclear to me what exactly this does or whether it should be included
+...
+
+#output
+PRINT ARG=pc_flip,pc_fold,pc_fc,pc_fm,pc_p,metad.bias FILE=COLVAR STRIDE=100
