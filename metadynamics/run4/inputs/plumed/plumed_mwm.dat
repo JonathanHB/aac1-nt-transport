@@ -37,9 +37,9 @@ pc_f1b: PIECEWISE POINT0=-0.4,-0.4 POINT1=0.4,0.4 ARG=pc_f1
 metad: METAD ARG=pc_f1b ...
     TEMP=310.15
     PACE=10000
-    HEIGHT=0.1
+    HEIGHT=0.05
     #### BIASFACTOR=16
-    SIGMA=0.02
+    SIGMA=0.04
     FILE=HILLS
     GRID_MIN=-0.4
     GRID_MAX=0.4

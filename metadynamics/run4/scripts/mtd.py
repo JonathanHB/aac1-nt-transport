@@ -113,7 +113,7 @@ elif len(gro_files) == 0: #xtc_segnum == gro_segnum+1:
     #the more sophisticated approach would be to eliminate the association between wynton jobs and md runs and just have this extend whichever run had the least sampling
     #but that would require far more complex code and is probably not worth the trouble at the moment
     upperdir_files = os.listdir("../")
-    hills_expected = ["HILLS."+str(i) for i in range(sys.argv[2])]
+    hills_expected = ["HILLS."+str(i) for i in range(int(sys.argv[2]))]
     for he in hills_expected:
         if he not in upperdir_files:
             print(f"{he} not found; exiting")
