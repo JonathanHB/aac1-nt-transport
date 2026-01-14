@@ -2,7 +2,7 @@ import os
 import sys
 
 n_walkers = 8
-date = "011326"
+date = "011426"
 
 hills_string_1 = ",".join([f'HILLS.{i}' for i in range(n_walkers)])
 #hills_string_1 = ",".join([f'bck.0.HILLS.{i}' for i in range(n_walkers)])
@@ -15,6 +15,6 @@ header = """
     module load cuda/10.0.130
     """
 
-plumed_command = f"plumed sum_hills --hills {hills_string_1} --mintozero --outfile summed_hills/fes-from-bck-{date}.dat"
+plumed_command = f"plumed sum_hills --hills {hills_string_1} --mintozero --outfile summed_hills/fes-{date}.dat"
 
 os.system(f"{header}\n{plumed_command}")
