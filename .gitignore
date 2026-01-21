@@ -10,6 +10,8 @@ metadynamics/run3/run_c
 metadynamics/run3/run_m
 metadynamics/run4/run_c
 metadynamics/run4/run_m
+metadynamics/run5/run_c
+metadynamics/run5/run_m
 metadynamics/run*/run_c
 metadynamics/run*/run_m
 charmmgui
