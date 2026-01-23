@@ -81,20 +81,20 @@ xtc_segnum = 1
 # make a tpr using the configuration in the last equilibration file
 if not os.path.exists("state.cpt"):
 
-    gmxrun(f"$GMX grompp -f ../../inputs/mdp/{mdp_tpr}.mdp -o {mdp_tpr}_01.tpr -c {sys.argv[1]}/seg_06.gro -p {sys.argv[1]}/topol.top -n {sys.argv[1]}/index.ndx")
+    gmxrun(f"$GMX grompp -f ../../inputs/mdp/{mdp_tpr}.mdp -o {mdp_tpr}_01.tpr -c ../../frame_extraction/frame_{sys.argv[3]}.gro -p {sys.argv[1]}/topol.top -n {sys.argv[1]}/index.ndx")
     
     t2 = time.time()
     t_left = 2-(t2 - t1)/3600  #2 hours minus time already used, in hours
 
     #TODO can we make this one command run after the if statements and set the parameters beforehand? be careful with the -cpi flag here
-    gmxrun(f"$GMX mdrun -s {mdp_tpr}_01.tpr -cpo -x mtd_seg_01.xtc -e ener_01.edr -g md.log_01.log -c mtd_seg_01.gro -nb gpu -pme gpu -bonded gpu -maxh {t_left} -plumed plumed.dat")
+    gmxrun(f"$GMX mdrun -s {mdp_tpr}_01.tpr -cpo -x mtd_seg_01.xtc -e ener_01.edr -g md.log_01.log -c mtd_seg_01.gro -nb gpu -pme gpu -bonded gpu -maxh {t_left}")# -plumed plumed.dat")
 
 
 #start new segment if current one is complete
 elif len(gro_files) > 0: #xtc_segnum == gro_segnum:
 
     #terminate parent task and exit
-    os.system(f"qdel {sys.argv[3]}")
+    os.system(f"qdel {sys.argv[4]}")
     sys.exit(0)
 
     #next_ind = str(gro_segnum+1).zfill(ndigits)
@@ -110,21 +110,22 @@ elif len(gro_files) > 0: #xtc_segnum == gro_segnum:
 #if there is an incomplete segment, resume from checkpoint file and append it
 elif len(gro_files) == 0: #xtc_segnum == gro_segnum+1:
 
+    #make sure all metadynamics runs have had a first segment to create hills files before trying to read them all in
     #the more sophisticated approach would be to eliminate the association between wynton jobs and md runs and just have this extend whichever run had the least sampling
     #but that would require far more complex code and is probably not worth the trouble at the moment
-    upperdir_files = os.listdir("../")
-    hills_expected = ["HILLS."+str(i) for i in range(int(sys.argv[2]))]
-    for he in hills_expected:
-        if he not in upperdir_files:
-            print(f"{he} not found; exiting")
-            sys.exit(0)
+    #upperdir_files = os.listdir("../")
+    #hills_expected = ["HILLS."+str(i) for i in range(int(sys.argv[2]))]
+    #for he in hills_expected:
+    #    if he not in upperdir_files:
+    #        print(f"{he} not found; exiting")
+    #        sys.exit(0)
 
     ind = str(xtc_segnum).zfill(ndigits)
 
     t2 = time.time()
     t_left = 2-(t2 - t1)/3600  #2 hours minus time already used, in hours
 
-    gmxrun(f"$GMX mdrun -s {mdp_tpr}_{ind}.tpr -cpi state.cpt -cpo -x mtd_seg_{ind}.xtc -e ener_{ind}.edr -g md.log_{ind}.log -c mtd_seg_{ind}.gro -noappend -nb gpu -pme gpu -bonded gpu -maxh {t_left} -plumed plumed.dat")
+    gmxrun(f"$GMX mdrun -s {mdp_tpr}_{ind}.tpr -cpi state.cpt -cpo -x mtd_seg_{ind}.xtc -e ener_{ind}.edr -g md.log_{ind}.log -c mtd_seg_{ind}.gro -noappend -nb gpu -pme gpu -bonded gpu -maxh {t_left}")# -plumed plumed.dat")
 
 
 #    break

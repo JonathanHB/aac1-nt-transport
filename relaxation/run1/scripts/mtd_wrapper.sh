@@ -10,8 +10,8 @@
 ##$ -pe mpi_onehost 4     #we want 4 mpi nodes on 1 gpu
 #$ -t 1-100              # number to run at a time (the total number in the job array)
 #$ -tc 1              # how many to run at a time (the number of parallel simulations at any given time)
-#$ -l hostname=!('qb3-atgpu13'|'qb3-atgpu23'|'qb3-idgpu11'|'qb3-idgpu12'|'qb3-idgpu13'|'qb3-idgpu14'|'qb3-idgpu15'|'qb3-iogpu4'|'msg-iogpu2'|'msg-iogpu3'|'msg-iogpu6'|'msg-iogpu7') #--don't run on this gpu, which causes jobs to crash because it lacks a gpu with id 0
-# #$ -l hostname=!(‘qb3-atgpu*‘|'qb3-atgpu**‘)
+#$ -l hostname=!('qb3-atgpu13'|'qb3-atgpu23'|'qb3-idgpu6'|'qb3-idgpu10'|'qb3-idgpu11'|'qb3-idgpu12'|'qb3-idgpu13'|'qb3-idgpu14'|'qb3-idgpu15'|'qb3-iogpu4'|'msg-iogpu2'|'msg-iogpu3'|'msg-iogpu6'|'msg-iogpu7') #--don't run on this gpu, which causes jobs to crash because it lacks a gpu with id 0
+#Niek has qb3-idgpu 6, 10, 11 only marked as bad; others have apparently been fixed, as of 1/21/26
 
 date
 hostname
@@ -47,7 +47,7 @@ export GMX_GPU_PME_PP_COMMS=true
 module load CBI miniconda3/4.12.0-py39
 conda activate westpa-2.0
 
-python ../../scripts/mtd.py $1 $2 $JOB_ID 
+python ../../scripts/mtd.py $1 $2 $3 $JOB_ID 
 
 # found_cpt_file=false
 

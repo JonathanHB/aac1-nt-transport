@@ -1,6 +1,5 @@
-runfolder=rotated-cavity-atp
 
-nwalkers=8
+nwalkers=32
 #max_dir_ind=$(($nwalkers-1))
 
 
@@ -16,32 +15,32 @@ do
 	#if [ -f "../../inputs/gromacs_c/${DIRECTORY}/run/all_dynamics_segs_mol.xtc" ] && ! [ "$(ls -A $DIRECTORY)" ]; then
 	cd $DIRECTORY
 
-	sed "s/@id@/$i/" ../../inputs/plumed/plumed_mwm.dat > plumed_a.dat
-	sed "s/@nw@/$nwalkers/" plumed_a.dat > plumed.dat
+	# sed "s/@id@/$i/" ../../inputs/plumed/plumed_mwm.dat > plumed_a.dat
+	# sed "s/@nw@/$nwalkers/" plumed_a.dat > plumed.dat
 
-	qsub ../../scripts/mtd_wrapper.sh ../../inputs/gromacs_c $nwalkers #../../../equilibration/${runfolder}/${DIRECTORY}
+	qsub ../../scripts/mtd_wrapper.sh ../../inputs/gromacs_c $nwalkers $DIRECTORY #../../../equilibration/${runfolder}/${DIRECTORY}
 	cd ..
 	#fi
 done
 
-cd ../run_m
+# cd ../run_m
 
-for ((i=0; i<$nwalkers; i++))
-do
-	DIRECTORY=$i #run$(printf '%02d' "$i")-aac1-m-atp
-	if [ ! -d "$DIRECTORY" ]; then
-		mkdir $DIRECTORY
-	fi
+# for ((i=0; i<$nwalkers; i++))
+# do
+# 	DIRECTORY=$i #run$(printf '%02d' "$i")-aac1-m-atp
+# 	if [ ! -d "$DIRECTORY" ]; then
+# 		mkdir $DIRECTORY
+# 	fi
 
-	#if [ -f "../../equilibration/${runfolder}/${DIRECTORY}/run/all_dynamics_segs_mol.xtc" ] && ! [ "$(ls -A $DIRECTORY)" ]; then
-	cd $DIRECTORY
+# 	#if [ -f "../../equilibration/${runfolder}/${DIRECTORY}/run/all_dynamics_segs_mol.xtc" ] && ! [ "$(ls -A $DIRECTORY)" ]; then
+# 	cd $DIRECTORY
 
-	sed "s/@id@/$i/" ../../inputs/plumed/plumed_mwm.dat > plumed_a.dat
-	sed "s/@nw@/$nwalkers/" plumed_a.dat > plumed.dat
+# 	sed "s/@id@/$i/" ../../inputs/plumed/plumed_mwm.dat > plumed_a.dat
+# 	sed "s/@nw@/$nwalkers/" plumed_a.dat > plumed.dat
 
-	qsub ../../scripts/mtd_wrapper.sh ../../inputs/gromacs_m $nwalkers #scripts/production_wrapper.sh ../../../equilibration/${runfolder}/${DIRECTORY}
-	cd ..
-	#fi
-done
+# 	qsub ../../scripts/mtd_wrapper.sh ../../inputs/gromacs_m $nwalkers #scripts/production_wrapper.sh ../../../equilibration/${runfolder}/${DIRECTORY}
+# 	cd ..
+# 	#fi
+# done
 
 cd ..
