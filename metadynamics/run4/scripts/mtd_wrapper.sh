@@ -12,7 +12,7 @@
 #$ -tc 1              # how many to run at a time (the number of parallel simulations at any given time)
 #$ -l hostname=!('qb3-atgpu13'|'qb3-atgpu23'|'qb3-idgpu6'|'qb3-idgpu11'|'qb3-idgpu12'|'qb3-idgpu13'|'qb3-idgpu14'|'qb3-idgpu15'|'qb3-iogpu4'|'msg-iogpu2'|'msg-iogpu3'|'msg-iogpu6'|'msg-iogpu7') #--don't run on this gpu, which causes jobs to crash because it lacks a gpu with id 0
 # #$ -l hostname=!(‘qb3-atgpu*‘|'qb3-atgpu**‘)
-#Niek has qb3-idgpu 6, 10, 11 only marked as bad; others have apparently been fixed
+#Niek has qb3-idgpu 6, [10], 11 only marked as bad; others have apparently been fixed, as of 1/21/26
 
 date
 hostname

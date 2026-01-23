@@ -30,8 +30,10 @@ for t, (d,s) in enumerate(zip(delta, sigma)):
 
     if farenough or t == len(time)-1:
         times.append(time[t])
-        print(f"{time[t]} ns")
+        print(f"{time[t]} ps")
         coords.append((d,s))
+
+        os.system(f"gmx trjconv -f mtd_seg_01.all.xtc -s ../mdp_hmr_4fs_01.tpr -o frame_{time[t]:.1f}ns.pdb -dump {time[t]:.1f}")
 
 print(f"found {len(coords)} points")
 #plt.scatter([c[0] for c in coords], [c[1] for c in coords], color = "blue", s=2, zorder = 10000)
