@@ -1,8 +1,4 @@
 
-#THIS FILE IS NOT FUNCTIONAL; USE 
-#scp jborowsky@dt1.wynton.ucsf.edu:/wynton/home/grabe/jborowsky/aac1-nt-transport/relaxation/run1/run_c/*/last_frames_012326_1/* . 
-#instead
-
 echo "Enter password:"
 read -s PASSWORD
 
@@ -21,8 +17,8 @@ cd run_c
 
 for i in {0..7};
 do
-	sshpass -p "$PASSWORD" scp jborowsky@dt1.wynton.ucsf.edu:/wynton/home/grabe/jborowsky/aac1-nt-transport/relaxation/ #metadynamics/run$runnum/run_c/$i/mtd_seg_$(printf '%02d' "$segnum").gro   c_run$(printf '%02d' "$i")_mtd_seg_$(printf '%02d' "$segnum").gro
-	#echo 1 0 | gmx trjconv -f c_run$(printf '%02d' "$i")_mtd_seg_$(printf '%02d' "$segnum").gro -s mdp_hmr_4fs_01.tpr -pbc mol -center -o c_run$(printf '%02d' "$i")_mtd_seg_$(printf '%02d' "$segnum")_centered.gro
+	sshpass -p "$PASSWORD" scp jborowsky@dt1.wynton.ucsf.edu:/wynton/home/grabe/jborowsky/aac1-nt-transport/metadynamics/run$runnum/run_c/$i/mtd_seg_$(printf '%02d' "$segnum").gro   c_run$(printf '%02d' "$i")_mtd_seg_$(printf '%02d' "$segnum").gro
+	echo 1 0 | gmx trjconv -f c_run$(printf '%02d' "$i")_mtd_seg_$(printf '%02d' "$segnum").gro -s mdp_hmr_4fs_01.tpr -pbc mol -center -o c_run$(printf '%02d' "$i")_mtd_seg_$(printf '%02d' "$segnum")_centered.gro
 done
 
 # cd ../run_m
