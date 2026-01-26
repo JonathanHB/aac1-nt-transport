@@ -12,7 +12,7 @@ continuation             = yes
 ; integration
 integrator               = md
 dt                       = 0.004 ; ps; 0.004 ps = 4 fs
-nsteps                   = 500000000 ; 25,000,000*0.004 ps = 100,000 ps = 100 ns
+nsteps                   = 50000000 ; 50,000,000*0.004 ps = 200,000 ps = 200 ns
 ; tinit                    = 0
 
 ; hydrogen mass repartitioning
