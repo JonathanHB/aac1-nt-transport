@@ -25,6 +25,7 @@ relaxation/run*/run_c
 relaxation/run*/run_m
 relaxation/run*/frame_extraction
 umbrella_sampling/run1/run_c
+umbrella_sampling/run1/v1_run_c
 umbrella_sampling/run1/run_m
 umbrella_sampling/run1/frame_extraction
 charmmgui

@@ -1,5 +1,5 @@
 #concatenate, center, reimage, and align trajectories
-nwalkers=16
+nwalkers=8
 out_dir=trj_processed_$1
 gmx=/wynton/home/grabe/jborowsky/gromacs/gmx_2024.4_plumed_mpi/gromacs/gromacs-2024.3/build/bin/gmx_mpi
 
@@ -21,23 +21,23 @@ do
 	fi
 done
 
-#cd ../run_m
+cd ../run_m
 
-#for ((i=0; i<$nwalkers; i++))
-#do
-#	if [ -d "$i" ]; then
-#		cd $i
-#		if [ ! -d "$out_dir" ]; then
-#			mkdir $out_dir
-#		fi
-#		cd $out_dir
-#			$gmx trjcat -f ../mtd_seg_01.xtc ../mtd_seg_01.part00*.xtc -o mtd_seg_01.all.xtc
-#			echo 1 0 | $gmx trjconv -f mtd_seg_01.all.xtc -s ../mdp_hmr_4fs_01.tpr -center -pbc mol -o mtd_seg_01_centered_mol.all.xtc -skip 4
-#			echo 1 1 0 | $gmx trjconv -f mtd_seg_01_centered_mol.all.xtc -s ../mdp_hmr_4fs_01.tpr -center -fit rot+trans -o mtd_seg_01_aligned.all.m.$i.xtc
-#
-#		cd ../..
-#	fi
-#done
+for ((i=0; i<$nwalkers; i++))
+do
+	if [ -d "$i" ]; then
+		cd $i
+		if [ ! -d "$out_dir" ]; then
+			mkdir $out_dir
+		fi
+		cd $out_dir
+			$gmx trjcat -f ../mtd_seg_01.xtc ../mtd_seg_01.part00*.xtc -o mtd_seg_01.all.xtc
+			echo 1 0 | $gmx trjconv -f mtd_seg_01.all.xtc -s ../mdp_hmr_4fs_01.tpr -center -pbc mol -o mtd_seg_01_centered_mol.all.xtc -skip 4
+			echo 1 1 0 | $gmx trjconv -f mtd_seg_01_centered_mol.all.xtc -s ../mdp_hmr_4fs_01.tpr -center -fit rot+trans -o mtd_seg_01_aligned.all.m.$i.xtc
+		
+		cd ../..
+	fi
+done
 
 # for ((i=0; i<$nwalkers; i++))
 # do
