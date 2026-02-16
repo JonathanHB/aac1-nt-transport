@@ -1,0 +1,10 @@
+Program:     gmx trjcat, version 2024.3-plumed_2.9.3
+Source file: src/gromacs/fileio/trxio.cpp (line 1000)
+Function:    read_first_frame(const gmx_output_env_t*, t_trxstatus**, const std::filesystem::__cxx11::path&, t_trxframe*, int)::<lambda()>
+
+Assertion failed:
+Condition: !bOK
+Inconsistent results - OK status from read_first_xtc, but 0 atom coords read
+
+For more information and tips for troubleshooting, please check the GROMACS
+website at https://manual.gromacs.org/current/user-guide/run-time-errors.html
