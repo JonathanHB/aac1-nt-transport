@@ -12,6 +12,10 @@ metadynamics/run4/run_c
 metadynamics/run4/run_m
 metadynamics/run5/run_c
 metadynamics/run5/run_m
+metadynamics/run6/run_c
+metadynamics/run6/run_m
+metadynamics/run7/run_c
+metadynamics/run7/run_m
 metadynamics/run*/run_c
 metadynamics/run*/run_m
 relaxation/run1/run_c
@@ -21,6 +25,7 @@ relaxation/run*/run_c
 relaxation/run*/run_m
 relaxation/run*/frame_extraction
 umbrella_sampling/run1/run_c
+umbrella_sampling/run1/v1_run_c
 umbrella_sampling/run1/run_m
 umbrella_sampling/run1/frame_extraction
 charmmgui

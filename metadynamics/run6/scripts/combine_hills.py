@@ -1,7 +1,7 @@
 import os
 import sys
 
-n_walkers = 16
+n_walkers = 8
 #date = "011426"
 
 hills_string_1 = ",".join([f'HILLS.{i}' for i in range(n_walkers)])
