@@ -4,7 +4,8 @@ import sys
 n_walkers = 8
 date = "010626"
 
-hills_string_1 = ",".join([f'HILLS{i}' for i in range(n_walkers)])
+#formerly missing the . before manual git merge
+hills_string_1 = ",".join([f'HILLS.{i}' for i in range(n_walkers)])#+",bck.0.HILLS.0,bck.0.HILLS.1"
 #hills_string_2 = ",".join([f'bck.0.HILLS{i}' for i in range(n_walkers)])
 print(hills_string_1)
 #print(hills_string_2)

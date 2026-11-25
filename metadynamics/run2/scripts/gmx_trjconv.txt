@@ -1,0 +1,2 @@
+gmx trjconv -f mtd_seg_01.xtc -s mdp_hmr_4fs_01.tpr -pbc mol -center -o mtd_seg_01_centered_mol.xtc
+gmx trjconv -f mtd_seg_01_centered_mol.xtc -s mdp_hmr_4fs_01.tpr -fit rot+trans -center -o mtd_seg01_centered_mol_align.xtc

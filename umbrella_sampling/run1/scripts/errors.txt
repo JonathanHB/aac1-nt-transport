@@ -1,0 +1,103 @@
+run 8:
+msg-iogpu6.wynton.ucsf.edu
+
+Fatal error:
+Unexpected cudaStreamQuery failure. CUDA error #700 (cudaErrorIllegalAddress):
+an illegal memory access was encountered.
+
+run 7:
+msg-iogpu6.wynton.ucsf.edu
+
+step 18173253: One or more water molecules can not be settled.
+Check for bad contacts and/or reduce the timestep if appropriate.
+Wrote pdb files with previous and current coordinates
+[msg-iogpu6:3005870:1:3005909] Caught signal 11 (Segmentation fault: address not mapped to object at address 0xfffffffe034f0990)
+[1769444059.556014] [msg-iogpu6:3005870:0]           debug.c:1295 UCX  WARN  ucs_debug_disable_signal: signal 7 was not set in ucs
+[msg-iogpu6:3005870:0:3005870] Caught signal 11 (Segmentation fault: address not mapped to object at address 0xfffffffe034f0b30)
+[1769444059.556355] [msg-iogpu6:3005870:2]           debug.c:1295 UCX  WARN  ucs_debug_disable_signal: signal 8 was not set in ucs
+[msg-iogpu6:3005870:2:3005915] Caught signal 11 (Segmentation fault: address not mapped to object at address 0xfffffffe049aafc0)
+[1769444059.557526] [msg-iogpu6:3005870:3]           debug.c:1295 UCX  WARN  ucs_debug_disable_signal: signal 8 was not set in ucs
+[1769444059.558859] [msg-iogpu6:3005870:3]        spinlock.c:29   UCX  WARN  ucs_recursive_spinlock_destroy() failed: busy
+[msg-iogpu6:3005870:3:3005911] Caught signal 11 (Segmentation fault: address not mapped to object at address 0xfffffffe048a53c0)
+[1769444059.558149] [msg-iogpu6:3005870:0]        spinlock.c:29   UCX  WARN  ucs_recursive_spinlock_destroy() failed: busy
+[1769444059.556847] [msg-iogpu6:3005870:1]        spinlock.c:29   UCX  WARN  ucs_recursive_spinlock_destroy() failed: busy
+[1769444059.558892] [msg-iogpu6:3005870:4]           debug.c:1295 UCX  WARN  ucs_debug_disable_signal: signal 8 was not set in ucs
+[1769444059.560184] [msg-iogpu6:3005870:4]        spinlock.c:29   UCX  WARN  ucs_recursive_spinlock_destroy() failed: busy
+[msg-iogpu6:3005870:4:3005914] Caught signal 11 (Segmentation fault: address not mapped to object at address 0xfffffffe03884600)
+[1769444059.559512] [msg-iogpu6:3005870:2]        spinlock.c:29   UCX  WARN  ucs_recursive_spinlock_destroy() failed: busy
+[1769444059.560205] [msg-iogpu6:3005870:5]           debug.c:1295 UCX  WARN  ucs_debug_disable_signal: signal 8 was not set in ucs
+[1769444059.560691] [msg-iogpu6:3005870:3]        spinlock.c:29   UCX  WARN  ucs_recursive_spinlock_destroy() failed: busy
+[1769444059.561375] [msg-iogpu6:3005870:5]        spinlock.c:29   UCX  WARN  ucs_recursive_spinlock_destroy() failed: busy
+[msg-iogpu6:3005870:5:3005912] Caught signal 11 (Segmentation fault: address not mapped to object at address 0xfffffffe038842c0)
+[1769444059.561385] [msg-iogpu6:3005870:6]           debug.c:1295 UCX  WARN  ucs_debug_disable_signal: signal 8 was not set in ucs
+[1769444059.562686] [msg-iogpu6:3005870:6]        spinlock.c:29   UCX  WARN  ucs_recursive_spinlock_destroy() failed: busy
+==== backtrace (tid:3005909) ====
+[1769444059.561969] [msg-iogpu6:3005870:4]        spinlock.c:29   UCX  WARN  ucs_recursive_spinlock_destroy() failed: busy
+[1769444059.562709] [msg-iogpu6:3005870:7]           debug.c:1295 UCX  WARN  ucs_debug_disable_signal: signal 8 was not set in ucs
+ 0  /lib64/libucs.so.0(ucs_handle_error+0x2dc) [0x145ac56c613c]
+ 1  /lib64/libucs.so.0(+0x2c31c) [0x145ac56c631c]
+ 2  /lib64/libucs.so.0(+0x2c4ea) [0x145ac56c64ea]
+ 3  /wynton/home/grabe/jborowsky/gromacs/gmx_2024.4_plumed_mpi/gromacs/gromacs-2024.3/build/lib/libgromacs_mpi.so.9(_ZN5Nbnxm4Grid17calcColumnIndicesERKNS0_10DimensionsEPKN3gmx15UpdateGroupsCogENS4_5RangeIiEENS4_8ArrayRefIKNS4_11BasicVectorIfEEEEiPKiiiNSA_IiEESH_+0x1b8) [0x145aee013bb8]
+ 4  /wynton/home/grabe/jborowsky/gromacs/gmx_2024.4_plumed_mpi/gromacs/gromacs-2024.3/build/lib/libgromacs_mpi.so.9(+0x5b2080) [0x145aee014080]
+ 5  /lib64/libgomp.so.1(+0x1b4be) [0x145aed0f54be]
+ 6  /lib64/libpthread.so.0(+0x81ca) [0x145aecec21ca]
+ 7  /lib64/libc.so.6(clone+0x43) [0x145aec1ee953]
+=================================
+==== backtrace (tid:3005914) ====
+[msg-iogpu6:3005870] *** Process received signal ***
+ 0  /lib64/libucs.so.0(ucs_handle_error+0x2dc) [0x145ac56c613c]
+[msg-iogpu6:3005870] Signal: Segmentation fault (11)
+[msg-iogpu6:3005870] Signal code:  (-6)
+[msg-iogpu6:3005870] Failing at address: 0xf2e8002dddae
+ 1  /lib64/libucs.so.0(+0x2c31c) [0x145ac56c631c]
+[msg-iogpu6:3005870]  2  /lib64/libucs.so.0(+0x2c4ea) [0x145ac56c64ea]
+[ 0]  3  /wynton/home/grabe/jborowsky/gromacs/gmx_2024.4_plumed_mpi/gromacs/gromacs-2024.3/build/lib/libgromacs_mpi.so.9(_ZN5Nbnxm4Grid17calcColumnIndicesERKNS0_10DimensionsEPKN3gmx15UpdateGroupsCogENS4_5RangeIiEENS4_8ArrayRefIKNS4_11BasicVectorIfEEEEiPKiiiNSA_IiEESH_+0x1b8) [0x145aee013bb8]
+
+run 6:
+msg-iogpu6.wynton.ucsf.edu
+
+Fatal error:
+Unexpected cudaStreamQuery failure. CUDA error #700 (cudaErrorIllegalAddress):
+an illegal memory access was encountered.
+
+run 10:
+msg-iogpu6.wynton.ucsf.edu
+
+step 24007405: One or more water molecules can not be settled.
+Check for bad contacts and/or reduce the timestep if appropriate.
+Wrote pdb files with previous and current coordinates
+[1769476051.538804] [msg-iogpu6:3030618:0]           debug.c:1295 UCX  WARN  ucs_debug_disable_signal: signal 8 was not set in ucs
+[1769476051.539129] [msg-iogpu6:3030618:1]           debug.c:1295 UCX  WARN  ucs_debug_disable_signal: signal 8 was not set in ucs
+[msg-iogpu6:3030618:1:3030656] Caught signal 11 (Segmentation fault: address not mapped to object at address 0xfffffffe036245d0)
+[1769476051.539148] [msg-iogpu6:3030618:0]           debug.c:1295 UCX  WARN  ucs_debug_disable_signal: signal 1 was not set in ucs
+[msg-iogpu6:3030618:0:3030658] Caught signal 11 (Segmentation fault: address not mapped to object at address 0xfffffffe039b7590)
+[1769476051.539803] [msg-iogpu6:3030618:2]           debug.c:1295 UCX  WARN  ucs_debug_disable_signal: signal 8 was not set in ucs
+[msg-iogpu6:3030618:2:3030660] Caught signal 11 (Segmentation fault: address not mapped to object at address 0xfffffffe039b78d0)
+[1769476051.541373] [msg-iogpu6:3030618:3]           debug.c:1295 UCX  WARN  ucs_debug_disable_signal: signal 8 was not set in ucs
+[1769476051.542551] [msg-iogpu6:3030618:3]        spinlock.c:29   UCX  WARN  ucs_recursive_spinlock_destroy() failed: busy
+[msg-iogpu6:3030618:3:3030661] Caught signal 11 (Segmentation fault: address not mapped to object at address 0xfffffffe039b7a70)
+[1769476051.541949] [msg-iogpu6:3030618:0]        spinlock.c:29   UCX  WARN  ucs_recursive_spinlock_destroy() failed: busy
+[1769476051.542560] [msg-iogpu6:3030618:4]           debug.c:1295 UCX  WARN  ucs_debug_disable_signal: signal 8 was not set in ucs
+[msg-iogpu6:3030618:4:3030662] Caught signal 11 (Segmentation fault: address not mapped to object at address 0xfffffffe039b7c10)
+[1769476051.542950] [msg-iogpu6:3030618:2]        spinlock.c:29   UCX  WARN  ucs_recursive_spinlock_destroy() failed: busy
+[1769476051.543640] [msg-iogpu6:3030618:5]           debug.c:1295 UCX  WARN  ucs_debug_disable_signal: signal 8 was not set in ucs
+[msg-iogpu6:3030618:5:3030659] Caught signal 11 (Segmentation fault: address not mapped to object at address 0xfffffffe039b7730)
+[1769476051.544164] [msg-iogpu6:3030618:3]        spinlock.c:29   UCX  WARN  ucs_recursive_spinlock_destroy() failed: busy
+[1769476051.544874] [msg-iogpu6:3030618:6]           debug.c:1295 UCX  WARN  ucs_debug_disable_signal: signal 1 was not set in ucs
+[1769476051.546045] [msg-iogpu6:3030618:6]        spinlock.c:29   UCX  WARN  ucs_recursive_spinlock_destroy() failed: busy
+[msg-iogpu6:3030618:6:3030618] Caught signal 11 (Segmentation fault: address not mapped to object at address 0xfffffffe03624770)
+[1769476051.545408] [msg-iogpu6:3030618:4]        spinlock.c:29   UCX  WARN  ucs_recursive_spinlock_destroy() failed: busy
+[1769476051.546050] [msg-iogpu6:3030618:7]           debug.c:1295 UCX  WARN  ucs_debug_disable_signal: signal 8 was not set in ucs
+[1769476051.546609] [msg-iogpu6:3030618:5]        spinlock.c:29   UCX  WARN  ucs_recursive_spinlock_destroy() failed: busy
+[1769476051.540375] [msg-iogpu6:3030618:1]        spinlock.c:29   UCX  WARN  ucs_recursive_spinlock_destroy() failed: busy
+[msg-iogpu6:3030618:7:3030657] Caught signal 11 (Segmentation fault: address not mapped to object at address 0xfffffffe039b73f0)
+==== backtrace (tid:3030658) ====
+ 0  /lib64/libucs.so.0(ucs_handle_error+0x2dc) [0x14688728c13c]
+ 1  /lib64/libucs.so.0(+0x2c31c) [0x14688728c31c]
+ 2  /lib64/libucs.so.0(+0x2c4ea) [0x14688728c4ea]
+ 3  /wynton/home/grabe/jborowsky/gromacs/gmx_2024.4_plumed_mpi/gromacs/gromacs-2024.3/build/lib/libgromacs_mpi.so.9(_ZN5Nbnxm4Grid17calcColumnIndicesERKNS0_10DimensionsEPKN3gmx15UpdateGroupsCogENS4_5RangeIiEENS4_8ArrayRefIKNS4_11BasicVectorIfEEEEiPKiiiNSA_IiEESH_+0x1b8) [0x1468afd50bb8]
+ 4  /wynton/home/grabe/jborowsky/gromacs/gmx_2024.4_plumed_mpi/gromacs/gromacs-2024.3/build/lib/libgromacs_mpi.so.9(+0x5b2080) [0x1468afd51080]
+ 5  /lib64/libgomp.so.1(+0x1b4be) [0x1468aee324be]
+ 6  /lib64/libpthread.so.0(+0x81ca) [0x1468aebff1ca]
+ 7  /lib64/libc.so.6(clone+0x43) [0x1468adf2b953]
+=================================

@@ -47,7 +47,7 @@ mdp_tpr = "mdp_hmr_4fs"
 ndigits = 2
 
 #normally this loop never gets past the first iteration, but if a round finishes it can use the rest of the node time to start the next round
-for round in range(999):
+for round in range(1):
 
     all_files = os.listdir()
     xtc_files = [f for f in all_files if f[-4:] == ".xtc"]
@@ -93,7 +93,7 @@ for round in range(999):
         t2 = time.time()
         t_left = 2-(t2 - t1)/3600  #2 hours minus time already used, in hours
 
-        gmxrun(f"$GMX mdrun -s {mdp_tpr}_{next_ind}.tpr -cpo -x mtd_seg_{next_ind}.xtc -e ener_{next_ind}.edr -g md.log_{next_ind}.log -c mtd_seg_{next_ind}.gro -nb gpu -pme gpu -bonded gpu -maxh {t_left} -plumed plumed.dat")
+        gmxrun(f"$GMX mdrun -s {mdp_tpr}_{next_ind}.tpr -cpo -x mtd_seg_{next_ind}.xtc -e ener_{next_ind}.edr -g md.log_{next_ind}.log -c mtd_seg_{next_ind}.gro -nb gpu -pme gpu -bonded gpu -maxh {t_left} -tinit {int(0.002*25000000*gro_segnum)} -plumed plumed.dat")
 
 
     #if there is an incomplete segment, resume from checkpoint file and append it
@@ -106,7 +106,7 @@ for round in range(999):
 
         gmxrun(f"$GMX mdrun -s {mdp_tpr}_{ind}.tpr -cpi state.cpt -cpo -x mtd_seg_{ind}.xtc -e ener_{ind}.edr -g md.log_{ind}.log -c mtd_seg_{ind}.gro -append -nb gpu -pme gpu -bonded gpu -maxh {t_left} -plumed plumed.dat")
 
-
+    break
 
 #     #start new segment if current one is complete
 #     elif gro_segnum == xtc_segnum:
